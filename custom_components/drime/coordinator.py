@@ -6,7 +6,7 @@ import logging
 from datetime import timedelta
 
 _LOGGER = logging.getLogger(__name__)
-UPDATE_INTERVAL = timedelta(minutes=10)
+UPDATE_INTERVAL = timedelta(minutes=5)
 
 class DrimeDataCoordinator(DataUpdateCoordinator):
 
