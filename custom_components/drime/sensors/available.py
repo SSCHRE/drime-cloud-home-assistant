@@ -1,0 +1,23 @@
+from homeassistant.components.sensor import SensorEntity
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from ..coordinator import DrimeDataCoordinator
+
+API_URL = "https://app.drime.cloud/api/v1/user/space-usage"
+
+class DrimeAvailableSensor(CoordinatorEntity, SensorEntity):
+    def __init__(self, hass, api_key):
+        coordinator = DrimeDataCoordinator(hass, api_key, API_URL)
+        super().__init__(coordinator)
+        self._attr_name = "Drime Available Space"
+
+    @property
+    def native_value(self):
+        data = self.coordinator.data
+        available_bytes = data.get("available")
+        if available_bytes is None:
+            return None
+        return round(available_bytes / (1024**3), 2)
+
+    @property
+    def native_unit_of_measurement(self):
+        return "GB"

@@ -1,0 +1,17 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Drime Cloud",
+        "description": "Connect your Drime Cloud account, you have to create a new API key/token. Get your API key [here](https://app.drime.cloud/account-settings#developers).",
+        "data": {
+          "api_key": "Enter your Drime Cloud API key."
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid API key",
+      "cannot_connect": "Cannot connect to Drime Cloud"
+    }
+  }
+}

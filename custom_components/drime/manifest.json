@@ -1,0 +1,10 @@
+{
+  "domain": "drime",
+  "name": "Drime Cloud",
+  "version": "0.1",
+  "codeowners": ["@SSCHRE"],
+  "dependencies": [],
+  "documentation": "https://github.com/SSCHRE/drime-cloud-ha",
+  "iot_class": "cloud_polling",
+  "config_flow": true
+}
