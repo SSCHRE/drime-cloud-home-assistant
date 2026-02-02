@@ -16,5 +16,11 @@
 * Available storage space
 * Storage usage percentage
 
+# Example
+<details>
+  <summary>Images</summary>
+  ![Screenshot 1](https://i.ibb.co/RTjHtzPk/Screenshot-2026-02-02-065845.png)
+</details>
+
 # NOTE
 * This is an early barebones version. More features to be added in the future
