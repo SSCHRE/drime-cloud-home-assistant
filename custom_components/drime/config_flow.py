@@ -58,18 +58,15 @@ class DrimeConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             async with async_timeout.timeout(10):
                 async with session.get(VALIDATION_URL, headers=headers) as resp:
 
-                    # Serverside error
                     if resp.status >= 500:
                         raise CannotConnect
 
-                    # Invalid api key or expired
                     if resp.status in (401, 403):
                         raise InvalidAuth
 
                     resp.raise_for_status()
                     data = await resp.json()
 
-                    # Call API to verify if API key is valid (user != null)
                     if data.get("user") is None:
                         raise InvalidAuth
 

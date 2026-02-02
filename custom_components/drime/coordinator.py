@@ -1,15 +1,14 @@
 import aiohttp
 import asyncio
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
 import logging
 from datetime import timedelta
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 _LOGGER = logging.getLogger(__name__)
 UPDATE_INTERVAL = timedelta(minutes=5)
 
 class DrimeDataCoordinator(DataUpdateCoordinator):
-
     def __init__(self, hass, api_key, api_url):
         super().__init__(
             hass,
@@ -28,16 +27,15 @@ class DrimeDataCoordinator(DataUpdateCoordinator):
 
         try:
             async with session.get(self.api_url, headers=headers, timeout=timeout) as resp:
-                if resp.status >= 500:
-                    _LOGGER.warning("Drime API server error %s, keeping old data", resp.status)
-                    return self.data
-
                 resp.raise_for_status()
                 data = await resp.json()
 
-                if data.get("status") != "success":
-                    _LOGGER.warning("Drime API error response: %s, keeping old data", data)
-                    return self.data
+                if isinstance(data, dict):
+                    if data.get("status") != "success":
+                        _LOGGER.warning("Drime API error response: %s, keeping old data", data)
+                        return self.data
+                elif isinstance(data, list):
+                    return data
 
                 return data
 
