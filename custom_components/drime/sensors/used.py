@@ -9,6 +9,7 @@ class DrimeUsedSensor(CoordinatorEntity, SensorEntity):
         coordinator = DrimeDataCoordinator(hass, api_key, API_URL)
         super().__init__(coordinator)
         self._attr_name = "Drime Used Space"
+        self._attr_unique_id = "drime_used_space"
 
     @property
     def native_value(self):

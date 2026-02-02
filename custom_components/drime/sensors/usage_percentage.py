@@ -9,6 +9,7 @@ class DrimeUsagePercentageSensor(CoordinatorEntity, SensorEntity):
         coordinator = DrimeDataCoordinator(hass, api_key, API_URL)
         super().__init__(coordinator)
         self._attr_name = "Drime Usage Percentage"
+        self._attr_unique_id = "drime_usage_percentage"
 
     @property
     def native_value(self):
