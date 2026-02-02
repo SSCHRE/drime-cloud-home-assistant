@@ -19,7 +19,7 @@
 # Example
 <details>
   <summary>Images</summary>
-  ![Screenshot 1](https://i.ibb.co/RTjHtzPk/Screenshot-2026-02-02-065845.png)
+  <img src="https://i.ibb.co/RTjHtzPk/Screenshot-2026-02-02-065845.png"/>
 </details>
 
 # NOTE
