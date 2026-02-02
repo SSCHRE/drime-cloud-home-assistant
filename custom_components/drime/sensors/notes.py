@@ -28,6 +28,7 @@ class DrimeNotesCountSensor(CoordinatorEntity, SensorEntity):
     def __init__(self, coordinator):
         super().__init__(coordinator)
         self._attr_name = "Drime Notes Count"
+        self._attr_unique_id = "drime_notes_count"
 
     @property
     def native_value(self):
