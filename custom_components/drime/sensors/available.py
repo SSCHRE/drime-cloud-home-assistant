@@ -15,7 +15,7 @@ class DrimeAvailableSensor(CoordinatorEntity, SensorEntity):
         data = self.coordinator.data
         total_bytes = data.get("available")
         used_bytes = data.get("used")
-        if available_bytes is None or used_bytes is None:
+        if total_bytes is None or used_bytes is None:
             return None
         available = total_bytes - used_bytes
 

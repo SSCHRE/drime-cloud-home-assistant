@@ -14,7 +14,7 @@ class DrimeTotalSensor(CoordinatorEntity, SensorEntity):
     def native_value(self):
         data = self.coordinator.data
         total_bytes = data.get("available")
-        if available_bytesis None or used_bytes is None:
+        if total_bytes is None:
             return None
 
         return round(total_bytes / (1024**3), 2)
