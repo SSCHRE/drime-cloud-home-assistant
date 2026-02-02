@@ -12,9 +12,13 @@
 6. Enter valid API key, which can be requested [here](https://app.drime.cloud/account-settings#developers)
 
 ## Features
-* Used storage space
-* Available storage space
-* Storage usage percentage
+* Storage
+  * Used storage space
+  * Available storage space
+  * Storage usage percentage
+* Notes
+  * List all notes
+  * Show amount of notes
 
 # Example
 <details>
