@@ -1,6 +1,7 @@
 import logging
 from .sensors.used import DrimeUsedSensor
 from .sensors.available import DrimeAvailableSensor
+from .sensors.total import DrimeTotalSensor
 from .sensors.usage_percentage import DrimeUsagePercentageSensor
 from .const import CONF_API_KEY
 
