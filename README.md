@@ -2,7 +2,7 @@
 [Drime Cloud](https://drime.cloud/) integration for Home Assistant
 
 ## Installation (HACS)
-Currently only custom repository installation is available:
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=SSCHRE&repository=drime-cloud-home-assistant&category=integration)
 
 1. Go to HACS > Integrations
 2. Add this repo into your HACS custom repositories
