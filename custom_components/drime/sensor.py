@@ -12,6 +12,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     sensors = [
         DrimeUsedSensor(hass, api_key),
         DrimeAvailableSensor(hass, api_key),
+        DrimeTotalSensor(hass, api_key),
         DrimeUsagePercentageSensor(hass, api_key)
     ]
     async_add_entities(sensors, True)

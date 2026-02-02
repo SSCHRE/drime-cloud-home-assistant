@@ -17,6 +17,9 @@ class DrimeUsagePercentageSensor(CoordinatorEntity, SensorEntity):
         available = data.get("available")
         if used is None or available is None:
             return None
+        total = used + available
+        if total == 0:
+            return 0
         return round((used / available) * 100, 2)
 
     @property
