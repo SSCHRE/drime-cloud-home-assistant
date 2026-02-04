@@ -4,7 +4,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 class DrimeNotesSensor(CoordinatorEntity, SensorEntity):
     def __init__(self, coordinator):
         super().__init__(coordinator)
-        self._attr_name = "Drime Notes"
+        self._attr_name = "Drime Notes (Legacy)"
         self._attr_unique_id = "drime_notes"
 
     @property
@@ -15,8 +15,9 @@ class DrimeNotesSensor(CoordinatorEntity, SensorEntity):
     @property
     def extra_state_attributes(self):
         data = self.coordinator.data if self.coordinator.data else []
-        for note in data:
-            note["url"] = f"https://app.drime.cloud/notes/{note['id']}/edit"
+        # Commented due to release of Notes V2 (No available endpoints to date)
+        # for note in data:
+        #     note["url"] = f"https://app.drime.cloud/notes/{note['id']}/edit"
         return {"notes": data}
 
     @property
@@ -27,7 +28,7 @@ class DrimeNotesSensor(CoordinatorEntity, SensorEntity):
 class DrimeNotesCountSensor(CoordinatorEntity, SensorEntity):
     def __init__(self, coordinator):
         super().__init__(coordinator)
-        self._attr_name = "Drime Notes Count"
+        self._attr_name = "Drime Notes Count (Legacy)"
         self._attr_unique_id = "drime_notes_count"
 
     @property
