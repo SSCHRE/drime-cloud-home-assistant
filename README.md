@@ -16,7 +16,7 @@
   * Used storage space
   * Available storage space
   * Storage usage percentage
-* Notes
+* Notes (Currently not supported with the release of Notes V2. Awaiting API endpoints)
   * List all notes
   * Show amount of notes
 
