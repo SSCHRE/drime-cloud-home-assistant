@@ -1,41 +1,28 @@
 from homeassistant.components.sensor import SensorEntity
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from ..coordinator import DrimeDataCoordinator
 
-class DrimeFilesSensor(SensorEntity):
-    _attr_name = "Drime Tracked Files"
-    _attr_icon = "mdi:file-multiple"
+API_URL = "https://app.drime.cloud/api/v1/user/space-usage"
 
-    def __init__(self, coordinator):
-        self.coordinator = coordinator
-        self._attr_unique_id = "drime_tracked_files_overview"
-
-    async def async_added_to_hass(self):
-        self.async_on_remove(
-            self.coordinator.async_add_listener(self.async_write_ha_state)
-        )
+class DrimeUsagePercentageSensor(CoordinatorEntity, SensorEntity):
+    def __init__(self, hass, api_key):
+        coordinator = DrimeDataCoordinator(hass, api_key, API_URL)
+        super().__init__(coordinator)
+        self._attr_name = "Drime Usage Percentage"
+        self._attr_unique_id = "drime_usage_percentage"
 
     @property
     def native_value(self):
-        files = self.coordinator.data.get("pagination", {}).get("data", [])
-        return len(files)
+        data = self.coordinator.data
+        used = data.get("used")
+        available = data.get("available")
+        if used is None or available is None:
+            return None
+        total = used + available
+        if total == 0:
+            return 0
+        return round((used / available) * 100, 2)
 
     @property
-    def extra_state_attributes(self):
-        files_raw = self.coordinator.data.get("pagination", {}).get("data", [])
-
-        files = [
-            {
-                "id": f["id"],
-                "name": f["name"],
-                "type": f.get("type"),
-                "file_size": f.get("file_size"),
-                "downloads": f.get("dl_number"),
-            }
-            for f in files_raw
-        ]
-
-        files.sort(key=lambda f: f["name"].lower())
-
-        return {
-            "files": files,
-            "per_page": 50,
-        }
+    def native_unit_of_measurement(self):
+        return "%"

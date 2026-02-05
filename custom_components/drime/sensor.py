@@ -28,6 +28,6 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         DrimeUsagePercentageSensor(hass, api_key),
         DrimeNotesSensor(notes_coordinator),
         DrimeNotesCountSensor(notes_coordinator),
-        DrimeTrackedFilesSensor(files_coordinator)
+        DrimeTrackedFilesSensor(tracked_files_coordinator)
     ]
     async_add_entities(sensors, True)
