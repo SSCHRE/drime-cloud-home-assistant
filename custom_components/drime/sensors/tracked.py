@@ -22,6 +22,7 @@ class DrimeTrackedFilesSensor(SensorEntity):
     def extra_state_attributes(self):
         files_raw = self.coordinator.data.get("pagination", {}).get("data", [])
 
+        # Compose list of files with wanted properties
         files = [
             {
                 "id": f["id"],
@@ -34,9 +35,9 @@ class DrimeTrackedFilesSensor(SensorEntity):
             for f in files_raw
         ]
 
-        # Stable ordering to avoid UI flicker
         files.sort(key=lambda f: f["name"].lower())
 
+        # Fetch a fixed 50 items
         return {
             "files": files,
             "per_page": 50,
