@@ -1,12 +1,12 @@
 from homeassistant.components.sensor import SensorEntity
 
-class DrimeFilesSensor(SensorEntity):
+class DrimeTrackedFilesSensor(SensorEntity):
     _attr_name = "Drime Tracked Files"
     _attr_icon = "mdi:file-multiple"
 
     def __init__(self, coordinator):
         self.coordinator = coordinator
-        self._attr_unique_id = "drime_tracked_files_overview"
+        self._attr_unique_id = "drime_files_overview"
 
     async def async_added_to_hass(self):
         self.async_on_remove(
@@ -28,11 +28,13 @@ class DrimeFilesSensor(SensorEntity):
                 "name": f["name"],
                 "type": f.get("type"),
                 "file_size": f.get("file_size"),
+                "views": f.get("views_number"),
                 "downloads": f.get("dl_number"),
             }
             for f in files_raw
         ]
 
+        # Stable ordering to avoid UI flicker
         files.sort(key=lambda f: f["name"].lower())
 
         return {
