@@ -25,7 +25,7 @@ Manual installation:
 # Example
 <details>
   <summary>Images</summary>
-  <img src="https://i.ibb.co/gZ4gQzwL/Screenshot-2026-02-02-065845.png"/>
+  <img src="https://i.ibb.co/F4mFmPgP/brave-Ie7pg1-Qp-Wv.png"/>
 </details>
 
 # NOTE
