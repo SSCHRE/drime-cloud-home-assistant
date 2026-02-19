@@ -2,11 +2,8 @@ from homeassistant.components.sensor import SensorEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from ..coordinator import DrimeDataCoordinator
 
-API_URL = "https://app.drime.cloud/api/v1/user/space-usage"
-
 class DrimeTotalSensor(CoordinatorEntity, SensorEntity):
-    def __init__(self, hass, api_key):
-        coordinator = DrimeDataCoordinator(hass, api_key, API_URL)
+    def __init__(self, coordinator):
         super().__init__(coordinator)
         self._attr_name = "Drime Total Space"
         self._attr_unique_id = "drime_total_space"
